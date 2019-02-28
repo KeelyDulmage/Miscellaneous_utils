@@ -1,0 +1,8 @@
+
+## converts fasta to oneline fasta
+awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' < protein_annotation/Citrobacter\ 21032.feature_protein.fasta > temp.fasta
+
+## finds sequences and moves them to new file
+grep -h -A 1 \\sOmp\\w\\s temp.fasta > ENF21032_porins.fasta
+
+grep -e 'OmpF' *porins.fasta -A 1 -h > OmpF_porins_DS_isolates.fasta
